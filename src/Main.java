@@ -25,9 +25,16 @@ public class Main {
         System.out.print("Square (" + x + "," + y + ") is flagged. Would you like to open this square (y/n)?");
         return player.next().charAt(0);
     }
+    
+    public static int getUserInputBoardSize() {
+        Scanner player = new Scanner(System.in);  // Reading from System.in
+        System.out.print("What is the size of the board you want to play?");
+        return player.nextInt();
+    }
 
     public static void main(String[] args) {
-        Board newBoard = new Board(8);
+    		
+        Board newBoard = new Board(getUserInputBoardSize());
 
         boolean noBomb;
 
@@ -49,7 +56,7 @@ public class Main {
                         System.out.print("\nSquare (" + inputX + "," + inputY + ") has been flagged.\n\n");
                         break;
                     case 'o' :
-                        noBomb = newBoard.verwerk(squareX, squareY);
+                        noBomb = newBoard.process(squareX, squareY);
                         break;
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -62,7 +69,7 @@ public class Main {
                 if (inputO == 'j') {
                     try {
                         newBoard.flag(squareX, squareY);
-                        noBomb = newBoard.verwerk(squareX, squareY);
+                        noBomb = newBoard.process(squareX, squareY);
                     } catch(SquareException notPossible) {
 
                     }

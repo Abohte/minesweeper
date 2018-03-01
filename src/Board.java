@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 
 import static java.lang.Math.sqrt;
@@ -42,7 +41,7 @@ public class Board {
         return BoardSquares[0].length;
     }
 
-    public boolean verwerk(int x, int y) throws SquareException {
+    public boolean process(int x, int y) throws SquareException {
         if (BoardSquares[x][y].open) {
             throw new SquareOpenedException("Square (" + x + 1 + "," + y + 1  + ") has already been opened.");
         }
@@ -87,7 +86,7 @@ public class Board {
                     continue;
                 }
                 try {
-                    verwerk(u,v);
+                    process(u,v);
                 } catch(Exception vakjeAlOpen) {
                     // vakje al open
                 }
